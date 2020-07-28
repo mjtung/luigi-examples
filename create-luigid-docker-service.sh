@@ -1,4 +1,6 @@
 #!/bin/sh
+    # create service (ie. swarm mode)
+    # can add repliacas=X flag to make it run X instances
     # mount volume to persist state
     # mount custom config file
     # mount folder for longs
