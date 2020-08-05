@@ -12,3 +12,9 @@ luigid --background --logdir <path_to_logs>
 - run the script in [start-luigi-docker.sh](start-luigi-docker.sh)
 - visit http://localhost:8082/ to access the UI
 - Note that we gave to pass in our own config file luigi.cfg
+
+# Further integrations
+
+## This example does the following:
+1. Single output - single input
+2. NormaliseDataT normalises data from input and writes output as CSV
