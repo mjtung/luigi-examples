@@ -18,3 +18,6 @@ luigid --background --logdir <path_to_logs>
 ## This example does the following:
 1. Single output - single input
 2. NormaliseDataT normalises data from input and writes output as CSV
+
+## Notes
+- bind mounts mean that if I change the file that it is mounted to, the Docker container automatically picks up the changes
