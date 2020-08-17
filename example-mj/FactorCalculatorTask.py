@@ -27,5 +27,5 @@ class FactorCalculatorTask(luigi.Task) :
 
 
 if __name__ == '__main__':
-    luigi.build([FactorCalculatorTask(runDate=datetime.strptime('2013-01-07', '%Y-%m-%d'), multiFactor=True)]) #datetime.strptime('2013-01-05','%Y-%m-%d')])
-    # luigi.run()
+    # luigi.build([FactorCalculatorTask(runDate=datetime.strptime('2013-01-07', '%Y-%m-%d'), multiFactor=True)]) #datetime.strptime('2013-01-05','%Y-%m-%d')])
+    luigi.run()
