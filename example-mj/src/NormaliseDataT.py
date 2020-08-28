@@ -66,7 +66,7 @@ class NormaliseDataT(luigi.Task) :
                     # write normalised data to output in s3
                     factorOutKey = utilFuncs.getCountryKeyForFactorS3(self.runDate, self.country, fac, isNorm=True)
                     # target = S3Target('s3://' + utilFuncs.BUCKET + '/' + factorOutKey, client=client)
-                    target = utilFuncs.getS3Target(client=client, path='s3://' + utilFuncs.BUCKET + '/' + factorOutKey)
+                    target = utilFuncs.getS3Target(client=client, path=factorOutKey)
                     with target.open('w') as targetBuf:
                         normFactors[fac].to_csv(targetBuf, header=False, index=False, line_terminator='\n') 
 

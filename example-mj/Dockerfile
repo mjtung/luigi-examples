@@ -9,6 +9,7 @@ COPY src /app
 # COPY --from=0 /docker-entrypoint.sh /docker-entrypoint.sh
 # COPY requirements.txt /app/.
 COPY env.yml app/env.yml
+COPY run.sh app/run.sh
 WORKDIR /app
 # RUN conda install --file requirements.txt
 ENV PATH /opt/conda/bin:$PATH
