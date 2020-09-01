@@ -8,6 +8,7 @@ import boto3
 import botocore
 import utilFuncs
 # import sys
+from ForceableTask import ForceableTask
 
 class DownloadRawDataT(luigi.Task) :
     runDate      = luigi.DateParameter()
@@ -20,7 +21,7 @@ class DownloadRawDataT(luigi.Task) :
         return None
 
     def run(self):
-         with self.output().open('w') as outfile:
+        with self.output().open('w') as outfile:
             pd.DataFrame(np.random.randn(100,1)).to_csv(outfile, header=False, index=False, line_terminator='\n')          
     
     def complete(self):

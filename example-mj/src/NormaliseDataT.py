@@ -6,8 +6,9 @@ import numpy as np
 from luigi.contrib.s3 import S3Client
 from CalcDataT import CalcDataT
 import utilFuncs
+from ForceableTask import ForceableTask
 
-class NormaliseDataT(luigi.Task) :
+class NormaliseDataT(ForceableTask) :
     runDate      = luigi.DateParameter()
     country      = luigi.Parameter(default = "")
     multiFactor  = luigi.BoolParameter(default = False, parsing=luigi.BoolParameter.EXPLICIT_PARSING)

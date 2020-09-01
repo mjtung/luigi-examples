@@ -8,8 +8,9 @@ from luigi.contrib.s3 import S3Client
 # import boto3
 # import botocore
 import utilFuncs
+from ForceableTask import ForceableTask
 
-class CalcDataT(luigi.Task) :
+class CalcDataT(ForceableTask) :
     runDate      = luigi.DateParameter()
     country      = luigi.Parameter()
     multiFactor  = luigi.BoolParameter(default = False, parsing=luigi.BoolParameter.EXPLICIT_PARSING)    
