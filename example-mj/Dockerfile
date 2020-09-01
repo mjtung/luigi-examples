@@ -21,5 +21,5 @@ RUN conda env update --file env.yml
 
 # CMD conda activate luigi-env
 # ENTRYPOINT ["conda", "run", "-n", "luigi-env", "python", "FactorCalculatorTask.py", "FactorCalculatorTask"]
-ENTRYPOINT /app/run.sh
+ENTRYPOINT ["/app/run.sh"]
 
