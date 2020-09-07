@@ -1,5 +1,11 @@
 import luigi
 
+# the ForceableTask has two flags, --force and --forceUpstream
+# by default, Luigi runs tasks only once, if they were successful.  It marks them as "complete" (the complete() method returns true, if the outputs exist)
+# the constructor of Forceable tasks removes outputs - which forces Luigi to run these tasks again, even if the outputs existed before, because removed outputs means that the complete() method will return False
+# Flags:
+# --force removes the outputs of the task that is called
+# --forceUpstream removes the outputs of the current task, and all the tasks in the requires function (upstream tasks), and all the tasks upstream too (traversing upwards)
 class ForceableTask(luigi.Task):
     force = luigi.BoolParameter(significant=False, default=False)
     forceUpstream = luigi.BoolParameter(significant=False, default=False)
