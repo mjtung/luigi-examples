@@ -52,6 +52,15 @@ PYTHONPATH='src' luigi --module FactorCalculatorTask FactorCalculatorTask --runD
 - The app is deployed as a Scheduled Task in the same ECS cluster.  It is scheduled to run once on Tuesdays, Thursdays, Saturdays
     - The app uses an NGINX Docker image as a reverse proxy that maps `localhost` to the IP-address of the Luigi daemon/server above.  See [nginx/](nginx/)
     - 
-- The Luigi daemon/server will show the results of the tasks that have run, for up to 48 hours (configure that in [luigi.cfg](luigi.cfg))
+- The Luigi daemon/server will show the results of the tasks that have run, for up to 48c hours (configure that in [luigi.cfg](luigi.cfg))
 - TODO: the deployment process was manual, and should be streamlined and automated.  By doing so, the IP-address of the Luigi Service could also be linked to the nginx reverse proxy, instead of being manually coded
 
+## NGINX Reverse Proxy, as deployed on AWS
+
+The NGINX reverse proxy points to 10.0.0.2 as the DNS resolver.  This assumes that the Luigi Daemon is deployed on the 10.0.0.0/24 subnet, as the *.*.*.2 IP address is the default VPC DNS resolver address on AWS.
+
+The NGINX reverse proxy points to `luigid-service2.local`, which is resolved via the AWS Route53 Service Discovery mechanism that allows the Luigi Daemon service to be accessed via `http://{service-discovery-service}.{service-discovery-namespace}`.
+
+See https://docs.aws.amazon.com/vpc/latest/userguide/vpc-dns.html for details
+
+NGINX config is located in [nginx.conf](nginx/nginx.conf)
