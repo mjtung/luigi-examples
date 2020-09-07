@@ -46,9 +46,12 @@ PYTHONPATH='src' luigi --module FactorCalculatorTask FactorCalculatorTask --runD
 
 # Deployment
 
-- I have currently deployed both a Luigi daemon/server and the example workflow app above to AWS ECS.  AWS ECS keeps a Luigi daemon/server running as a Service at  http://54.245.23.5:8082/ (note that the IP address may change from time to time)
-- The app is deployed as a Scheduled Task in the same ECS cluster.  It is scheduled to run once a day
-    - The app uses an nginx Docker image as a reverse proxy that maps `localhost` to the IP-address of the Luigi daemon/server above
+- I have currently deployed both a Luigi daemon/server and the example workflow app above to AWS ECS.  AWS ECS keeps a Luigi daemon/server running as a Service at http://http://54.187.222.235:8082/ (note that the IP address may change from time to time - this is only current as of July 9th)
+    - **Note that this IP address will change every other day**, as I have set a scheduled task on AWS to turn off the daemon at night, to save on resources
+    - TODO: Make a Route53 URL so that it does not depend on a dynamic URL
+- The app is deployed as a Scheduled Task in the same ECS cluster.  It is scheduled to run once on Tuesdays, Thursdays, Saturdays
+    - The app uses an NGINX Docker image as a reverse proxy that maps `localhost` to the IP-address of the Luigi daemon/server above.  See [nginx/](nginx/)
+    - 
 - The Luigi daemon/server will show the results of the tasks that have run, for up to 48 hours (configure that in [luigi.cfg](luigi.cfg))
 - TODO: the deployment process was manual, and should be streamlined and automated.  By doing so, the IP-address of the Luigi Service could also be linked to the nginx reverse proxy, instead of being manually coded
 
